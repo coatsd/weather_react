@@ -4,7 +4,7 @@ function ZipForm(props) {
     let [zipCode, setZipCode] = useState('');
     const { onSubmit } = props;
 
-    const submitZipCode = (event) => {
+    const submitZipCode = event => {
         event.preventDefault();
         onSubmit(zipCode);
         setZipCode('');
@@ -15,7 +15,7 @@ function ZipForm(props) {
             <form id="zipform" onSubmit={submitZipCode}>
                 <div className="flex-parent">
                     <label htmlFor="zipcode">Zip</label>
-                    <input onInput={(e) => setZipCode(e.target.value)}
+                    <input onInput={e => setZipCode(e.target.value)}
                         className="form-control" type="input"
                         id="zipcode" name="zipcode" required />
                 </div>

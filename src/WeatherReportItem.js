@@ -9,7 +9,7 @@ function WeatherReportItem(props) {
     const date = new Date(day.dt * 1000);
 
 	return (
-        <div className="weather-report-item" onClick= {this.showCurrentDay}>
+        <div className="weather-report-item" onClick= {showCurrentDay}>
         	<h2> {date.getMonth() + 1} / {date.getDate()} </h2>
         	<h3> {day.temp.min} &deg;F &#124;
             	{day.temp.max} &deg;F

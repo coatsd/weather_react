@@ -13,11 +13,13 @@ function App(props) {
     const [dates, setDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
-    const url = "http://api.openweathermap.org/data/2.5/forecast/daily?zip=";
+    const url = "http://api.openweathermap.org/data/2.5/forecast/daily";
     const params = "&units=imperial";
     const apikey = "&appid=" + getApi();
 
-    const onFormSubmit = (zipCode) => {
+    const onFormSubmit = (latlong) => {
+        let [lat, long] = latlong.split(',');
+        let loc = '?lat=' + lat + '&lon=' + long;
         fetch(url + zipCode + params + apikey)
             .then ( ({data}) => {
                 const {cityIn, list: datesIn } = data;
@@ -25,14 +27,10 @@ function App(props) {
                 setDates(datesIn);
                 setSelectedDate(null);
             })
-            .catch(error => {
-                alert(error);
-            });
+            .catch(error => alert(error));
     }
 
-    const onDayClick = (index) => {
-        setSelectedDate(index);
-    }
+    const onDayClick = index => setSelectedDate(index);
 
     return (
         <div className="App">
