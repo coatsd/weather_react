@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function ZipForm(props) {
-    let [zipCode, setZipCode] = useState('');
+    const [zipCode, setZipCode] = useState('');
     const { onSubmit } = props;
 
     const submitZipCode = event => {
@@ -14,7 +14,7 @@ function ZipForm(props) {
         <div className="zip-form">
             <form id="zipform" onSubmit={submitZipCode}>
                 <div className="flex-parent">
-                    <label htmlFor="zipcode">Zip</label>
+                    <label htmlFor="zipcode">Latitude/Longitude</label>
                     <input onInput={e => setZipCode(e.target.value)}
                         className="form-control" type="input"
                         id="zipcode" name="zipcode" required />

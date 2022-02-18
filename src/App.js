@@ -9,21 +9,21 @@ import getApi from './GetAPIKey';
 // api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid={API key}
 
 function App(props) {
-    const [city, setCity] = useState({});
+    const [timezone, setTimezone] = useState('');
     const [dates, setDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
-    const url = "http://api.openweathermap.org/data/2.5/forecast/daily";
+    const url = "http://api.openweathermap.org/data/2.5/onecall";
     const params = "&units=imperial";
     const apikey = "&appid=" + getApi();
 
     const onFormSubmit = (latlong) => {
-        let [lat, long] = latlong.split(',');
+        let [lat, long] = latlong.split(' ');
         let loc = '?lat=' + lat + '&lon=' + long;
-        fetch(url + zipCode + params + apikey)
-            .then ( ({data}) => {
-                const {cityIn, list: datesIn } = data;
-                setCity(cityIn);
+        fetch(url + loc + params + apikey)
+            .then ( ({timezone: timezoneIn, daily: datesIn}) => {
+                console.log(timezoneIn);
+                setTimezone(timezoneIn);
                 setDates(datesIn);
                 setSelectedDate(null);
             })
@@ -37,7 +37,7 @@ function App(props) {
             <ZipForm onSubmit = {onFormSubmit}  />
             <WeatherReport days = {dates} onDayClick= {setSelectedDate} />
             {selectedDate !== null && 
-            <CurrentDay city= {city} day= {dates[selectedDate]} />}
+            <CurrentDay timezone={timezone} day= {dates[selectedDate]} />}
         </div>
     );
 }
