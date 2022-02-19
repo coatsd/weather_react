@@ -9,8 +9,7 @@ function WeatherReport(props) {
                     key={day.dt}
                     day={day}
                     index={index} 
-                    onDayClick={props.onDayClick}
-                     />) }
+                    onDayClick={props.onDayClick} />) }
         </div>
 	);
 }

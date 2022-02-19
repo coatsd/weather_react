@@ -5,7 +5,7 @@ function WeatherReportItem(props) {
         onDayClick(index);		
 	}
 
-	const {day} = this.props;
+	const {day} = props;
     const date = new Date(day.dt * 1000);
 
 	return (
